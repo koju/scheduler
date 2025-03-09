@@ -12,7 +12,7 @@ lazy val root = (project in file("."))
     organization := "dev.koju",
     name := "scheduler",
     version := "0.0.1-SNAPSHOT",
-    scalaVersion := "3.6.3",
+    scalaVersion := "3.6.4",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % V.Http4s,
       "org.http4s" %% "http4s-ember-client" % V.Http4s,
