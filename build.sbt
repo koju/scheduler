@@ -13,12 +13,10 @@ lazy val root = (project in file("."))
     scalaVersion := "3.6.4",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % V.Http4s,
-      "org.http4s" %% "http4s-ember-client" % V.Http4s,
       "org.http4s" %% "http4s-circe" % V.Http4s,
       "org.http4s" %% "http4s-dsl" % V.Http4s,
       "org.typelevel" %% "log4cats-slf4j" % V.Log4Cats,
       "ch.qos.logback" % "logback-classic" % V.Logback,
       "org.fusesource.jansi" % "jansi" % V.Jansi
-    ),
-    testFrameworks += new TestFramework("munit.Framework")
+    )
   )

@@ -1,10 +1,10 @@
 package dev.koju.scheduler
 
-import cats.effect.Async
+import cats.data.*
+import cats.effect.{Async, Resource}
 import cats.syntax.all.*
 import com.comcast.ip4s.*
 import fs2.io.net.Network
-import org.http4s.ember.client.EmberClientBuilder
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.implicits.*
 import org.http4s.server.middleware.Logger
@@ -17,22 +17,11 @@ object SchedulerServer:
     given LoggerFactory[F] = Slf4jFactory.create[F]
 
     for {
-      client <- EmberClientBuilder.default[F].build
-      helloWorldAlg = HelloWorld.impl[F]
-      jokeAlg = Jokes.impl[F](client)
-
-      // Combine Service Routes into an HttpApp.
-      // Can also be done via a Router if you
-      // want to extract a segments not checked
-      // in the underlying routes.
-      httpApp = (
-        SchedulerRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
-          SchedulerRoutes.jokeRoutes[F](jokeAlg)
-        ).orNotFound
-
-      // With Middlewares in place
+      helloWorldAlg <- HelloWorld.impl[F].pure[Resource[F, *]]
+      httpApp =
+        SchedulerRoutes.helloWorldRoutes[F](helloWorldAlg)
+          .orNotFound
       finalHttpApp = Logger.httpApp(true, true)(httpApp)
-
       _ <-
         EmberServerBuilder.default[F]
           .withHost(ipv4"0.0.0.0")

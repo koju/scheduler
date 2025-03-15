@@ -19,7 +19,7 @@ object HelloWorld:
    * */
   final case class Greeting(greeting: String) extends AnyVal
 
-  object Greeting:
+  private object Greeting:
     given Encoder[Greeting] = new Encoder[Greeting]:
       final def apply(a: Greeting): Json = Json.obj(
         ("message", Json.fromString(a.greeting)),
