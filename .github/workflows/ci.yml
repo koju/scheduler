@@ -1,4 +1,4 @@
-name: Scala CI
+name: CI
 
 on:
   push:
@@ -31,3 +31,16 @@ jobs:
       # Optional: This step uploads information to the GitHub dependency graph and unblocking Dependabot alerts for the repository
     - name: Upload dependency graph
       uses: scalacenter/sbt-dependency-submission@ab086b50c947c9774b70f39fc7f6e20ca2706c91
+
+  merge:
+    name: Merge dependency update
+    if: github.actor == 'scala-steward'
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge scala-steward PR
+        uses: desbo/merge-pr-action@v0
+        with:
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          ALLOWED_UPDATE: minor
