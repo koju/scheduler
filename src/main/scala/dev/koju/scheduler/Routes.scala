@@ -1,15 +1,15 @@
 package dev.koju.scheduler
 
 import cats.effect.Sync
-import cats.implicits._
+import cats.implicits.*
 import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 
-object SchedulerRoutes:
+object Routes:
 
-  def helloWorldRoutes[F[_]: Sync](H: HelloWorld[F]): HttpRoutes[F] =
-    val dsl = new Http4sDsl[F]{}
-    import dsl._
+  def helloWorldRoutes[F[_] : Sync](H: HelloWorld[F]): HttpRoutes[F] =
+    val dsl = new Http4sDsl[F] {}
+    import dsl.*
     HttpRoutes.of[F] {
       case GET -> Root / "hello" / name =>
         for {

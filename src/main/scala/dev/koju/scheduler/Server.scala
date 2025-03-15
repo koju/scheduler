@@ -11,7 +11,7 @@ import org.http4s.server.middleware.Logger
 import org.typelevel.log4cats.*
 import org.typelevel.log4cats.slf4j.Slf4jFactory
 
-object SchedulerServer:
+object Server:
 
   def run[F[_] : {Async, Network}]: F[Nothing] = {
     given LoggerFactory[F] = Slf4jFactory.create[F]
@@ -19,7 +19,7 @@ object SchedulerServer:
     for {
       helloWorldAlg <- HelloWorld.impl[F].pure[Resource[F, *]]
       httpApp =
-        SchedulerRoutes.helloWorldRoutes[F](helloWorldAlg)
+        Routes.helloWorldRoutes[F](helloWorldAlg)
           .orNotFound
       finalHttpApp = Logger.httpApp(true, true)(httpApp)
       _ <-
