@@ -8,14 +8,10 @@ import fs2.io.net.Network
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.implicits.*
 import org.http4s.server.middleware.Logger
-import org.typelevel.log4cats.*
-import org.typelevel.log4cats.slf4j.Slf4jFactory
 
 object Server:
 
   def run[F[_] : {Async, Network}]: F[Nothing] = {
-    given LoggerFactory[F] = Slf4jFactory.create[F]
-
     for {
       helloWorldAlg <- HelloWorld.impl[F].pure[Resource[F, *]]
       httpApp =

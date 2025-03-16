@@ -24,6 +24,6 @@ object HelloWorld:
       ("message", Json.fromString(a.greeting)),
     )
 
-    given [F[_]]: EntityEncoder[F, Greeting] = jsonEncoderOf[Greeting]
+    given [F[_]]: EntityEncoder[F, Greeting] = jsonEncoderOf
 
   def impl[F[_] : Applicative]: HelloWorld[F] = (n: HelloWorld.Name) => Greeting("Hello, " + n.name).pure[F]
