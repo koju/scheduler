@@ -12,18 +12,19 @@ trait HelloWorld[F[_]]:
 object HelloWorld:
   final case class Name(name: String) extends AnyVal
 
-  /**
-   * More generally you will want to decouple your edge representations from
-   * your internal data structures, however this shows how you can
-   * create encoders for your data.
-   * */
+  /** More generally you will want to decouple your edge representations from
+    * your internal data structures, however this shows how you can create
+    * encoders for your data.
+    */
   final case class Greeting(greeting: String) extends AnyVal
 
   private object Greeting:
-    given Encoder[Greeting] = (a: Greeting) => Json.obj(
-      ("message", Json.fromString(a.greeting)),
-    )
+    given Encoder[Greeting] = (a: Greeting) =>
+      Json.obj(
+        ("message", Json.fromString(a.greeting))
+      )
 
     given [F[_]]: EntityEncoder[F, Greeting] = jsonEncoderOf
 
-  def impl[F[_] : Applicative]: HelloWorld[F] = (n: HelloWorld.Name) => Greeting("Hello, " + n.name).pure[F]
+  def impl[F[_]: Applicative]: HelloWorld[F] = (n: HelloWorld.Name) =>
+    Greeting("Hello, " + n.name).pure[F]
