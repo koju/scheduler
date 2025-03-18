@@ -2,6 +2,7 @@ package dev.koju.scheduler
 
 import cats.data.*
 import cats.effect.{Async, Resource}
+import dev.koju.scheduler.config.AppConfig
 import fs2.io.net.Network
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.implicits.*
@@ -11,7 +12,7 @@ object Server:
 
   def run[F[_]: {Async, Network}]: F[Nothing] = {
     for {
-      config <- Resource.eval(Config.load[F])
+      config <- Resource.eval(AppConfig.load[F])
       helloWorldAlg = HelloWorld.impl[F]
       httpApp = Routes.helloWorldRoutes[F](helloWorldAlg).orNotFound
       finalHttpApp = Logger.httpApp(true, true)(httpApp)

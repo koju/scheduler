@@ -1,16 +1,9 @@
-package dev.koju.scheduler
+package dev.koju.scheduler.config
 
 import cats.*
-import cats.effect.*
 import cats.implicits.*
 import ciris.*
 import com.comcast.ip4s.*
-
-final case class Config(server: ServerConfig)
-
-object Config:
-  def load[F[_]: Async]: F[Config] =
-    ServerConfig.read.map(Config.apply).load[F]
 
 final case class ServerConfig(
     host: Host,
