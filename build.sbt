@@ -6,7 +6,7 @@ val V = new {
   val Ciris = "3.7.0"
 }
 
-lazy val root = (project in file("."))
+lazy val root = (project in file("modules/app"))
   .settings(
     organization := "dev.koju",
     name := "scheduler",

@@ -10,7 +10,7 @@ final case class Config(server: ServerConfig)
 
 object Config:
   def load[F[_]: Async]: F[Config] =
-    ServerConfig.value.map(Config.apply).load[F]
+    ServerConfig.read.map(Config.apply).load[F]
 
 final case class ServerConfig(
     host: Host,
@@ -24,7 +24,7 @@ object ServerConfig:
   given ConfigDecoder[String, Port] =
     ConfigDecoder[String].mapOption("com.comcast.ip4s.Port")(Port.fromString)
 
-  def value[F[_]]: ConfigValue[F, ServerConfig] =
+  def read[F[_]]: ConfigValue[F, ServerConfig] =
     (
       prop("server.host").as[Host].default(ipv4"0.0.0.0"),
       prop("server.port").as[Port].default(port"8080"),
