@@ -1,3 +1,9 @@
+ThisBuild / organization := "dev.koju"
+ThisBuild / scalaVersion := "3.6.4"
+ThisBuild / version := "0.0.1-SNAPSHOT"
+
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
 val V = new {
   val Http4s = "0.23.30"
   val Log4Cats = "2.7.0"
@@ -8,10 +14,7 @@ val V = new {
 
 lazy val root = (project in file("modules/app"))
   .settings(
-    organization := "dev.koju",
-    name := "scheduler",
-    version := "0.0.1-SNAPSHOT",
-    scalaVersion := "3.6.4",
+    name := "app",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % V.Http4s,
       "org.http4s" %% "http4s-circe" % V.Http4s,
@@ -20,5 +23,5 @@ lazy val root = (project in file("modules/app"))
       "ch.qos.logback" % "logback-classic" % V.Logback,
       "org.fusesource.jansi" % "jansi" % V.Jansi,
       "is.cir" %% "ciris" % V.Ciris,
-    ),
+    )
   )
