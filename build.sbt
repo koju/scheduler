@@ -1,7 +1,7 @@
 val V = new {
   val Http4s = "0.23.30"
   val Log4Cats = "2.7.0"
-  val Logback = "1.5.17"
+  val Logback = "1.5.18"
   val Jansi = "2.4.1"
   val Ciris = "3.7.0"
 }
