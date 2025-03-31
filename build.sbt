@@ -9,7 +9,7 @@ val V = new {
   val Log4Cats = "2.7.0"
   val Logback = "1.5.18"
   val Jansi = "2.4.1"
-  val Ciris = "3.7.0"
+  val Ciris = "3.8.0"
 }
 
 lazy val root = (project in file("modules/app"))
@@ -23,5 +23,5 @@ lazy val root = (project in file("modules/app"))
       "ch.qos.logback" % "logback-classic" % V.Logback,
       "org.fusesource.jansi" % "jansi" % V.Jansi,
       "is.cir" %% "ciris" % V.Ciris,
-    )
+    ),
   )
