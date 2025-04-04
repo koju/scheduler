@@ -10,6 +10,7 @@ val V = new {
   val Log4Cats = "2.7.0"
   val Logback = "1.5.18"
   val Jansi = "2.4.1"
+  val CatsEffect = "3.6.0"
   val Ciris = "3.8.0"
 }
 
@@ -22,6 +23,7 @@ lazy val root = (project in file("modules/app"))
       "org.http4s" %% "http4s-circe" % V.Http4s,
       "io.circe" %% "circe-core" % V.Circe,
       "io.circe" %% "circe-generic" % V.Circe,
+      "org.typelevel" %% "cats-effect" % V.CatsEffect,
       "org.typelevel" %% "log4cats-slf4j" % V.Log4Cats,
       "ch.qos.logback" % "logback-classic" % V.Logback,
       "org.fusesource.jansi" % "jansi" % V.Jansi,
