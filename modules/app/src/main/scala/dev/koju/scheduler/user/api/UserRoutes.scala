@@ -11,7 +11,6 @@ final case class UserRoutes[F[_]: {MonadThrow, Concurrent}](
     userService: UserService[F]
 ) extends Http4sDsl[F]:
 
-  @annotation.nowarn("id=205")
   val routes: HttpRoutes[F] = HttpRoutes.of[F] {
     case req @ POST -> Root / "users" =>
       for {

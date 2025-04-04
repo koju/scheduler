@@ -29,4 +29,5 @@ lazy val root = (project in file("modules/app"))
       "org.fusesource.jansi" % "jansi" % V.Jansi,
       "is.cir" %% "ciris" % V.Ciris,
     ),
+    scalacOptions += "-source:3.7"
   )
