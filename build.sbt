@@ -10,7 +10,7 @@ val V = new {
   val Log4Cats = "2.7.0"
   val Logback = "1.5.18"
   val Jansi = "2.4.1"
-  val CatsEffect = "3.6.0"
+  val CatsEffect = "3.6.1"
   val Ciris = "3.8.0"
 }
 
@@ -29,5 +29,5 @@ lazy val root = (project in file("modules/app"))
       "org.fusesource.jansi" % "jansi" % V.Jansi,
       "is.cir" %% "ciris" % V.Ciris,
     ),
-    scalacOptions += "-source:3.7"
+    scalacOptions += "-source:3.7",
   )
