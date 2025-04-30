@@ -9,7 +9,7 @@ val V = new {
   val Circe = "0.14.12"
   val Log4Cats = "2.7.0"
   val Logback = "1.5.18"
-  val Jansi = "2.4.1"
+  val Jansi = "2.4.2"
   val CatsEffect = "3.6.1"
   val Ciris = "3.8.0"
 }
