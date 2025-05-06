@@ -1,7 +1,5 @@
 package dev.koju.scheduler.user.domain
 
-
-
 import java.util.UUID
 
 opaque type UserId = UUID
