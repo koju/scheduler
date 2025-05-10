@@ -1,8 +1,6 @@
 package dev.koju.scheduler.config
 
-import cats.*
 import cats.effect.*
-import cats.implicits.*
 
 final case class AppConfig(server: ServerConfig)
 
