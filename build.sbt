@@ -11,7 +11,7 @@ val V = new {
   val Logback = "1.5.18"
   val Jansi = "2.4.2"
   val CatsEffect = "3.6.1"
-  val Ciris = "3.8.0"
+  val Ciris = "3.9.0"
 }
 
 lazy val root = (project in file("modules/app"))
