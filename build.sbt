@@ -5,7 +5,7 @@ ThisBuild / version := "0.0.1-SNAPSHOT"
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
 val V = new {
-  val Http4s = "0.23.30"
+  val Http4s = "0.23.38"
   val Circe = "0.14.13"
   val Log4Cats = "2.7.0"
   val Logback = "1.5.18"
